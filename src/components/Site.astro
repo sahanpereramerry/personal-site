@@ -1,0 +1,96 @@
+---
+import { site, pillars, articles, bodyOf } from '../data/site.js';
+import css from '../site/styles.css?raw';
+import client from '../site/client.js?raw';
+
+/* `article` is set on /articles/<slug> pages and absent on the front page.
+   Both render the same page; the script opens the pane that matches the address. */
+const { article } = Astro.props;
+
+const title = article ? `${article.title} · Sahan Perera-Merry` : site.title;
+const description = article ? article.line : site.description;
+const canonical = site.url + (article ? `/articles/${article.slug}` : '/');
+
+const data = {
+  P: pillars,
+  ITEMS: articles.map((a) => ({ id: a.id, slug: a.slug, p: a.pillar, title: a.title, html: bodyOf(a.slug) })),
+  PROOF: Object.fromEntries(articles.map((a) => [a.id, a.line])),
+};
+const script = client.replace('/*__DATA__*/null', () => JSON.stringify(data).replace(/</g, '\\u003c'));
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta property="og:type" content={article ? 'article' : 'website'} />
+<meta property="og:site_name" content="Sahan Perera-Merry" />
+<meta property="og:title" content={article ? article.title : site.title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={site.url + site.image} />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={article ? article.title : site.title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={site.url + site.image} />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<style is:inline set:html={css}></style>
+</head>
+<body>
+<div id="deck">
+<div class="pane home" style="--i:0" data-pos="0"><button class="spine" data-goto="0">Sahan Perera-Merry</button><div class="pane-body">
+<div class="wrap">
+
+<div class="bar"><b>Sahan Perera-Merry</b><nav aria-label="Sections"><a href="#writer">Writer</a><a href="#builder">Builder</a><a href="#operator">Operator</a><a href="#contact">Contact</a></nav></div>
+
+<header class="hero">
+  <h1>Technical ideas, well written, <em>brought to market.</em></h1>
+  <img class="portrait" src="/headshot.png" alt="Sahan Perera-Merry" width="730" height="730">
+  <p><span>I turn engineering and research into writing experts respect, </span><span>build the AI workflows that scale it, </span><span>and get it signed off by clients and CEOs.</span></p>
+</header>
+
+<dl class="creds" aria-label="Background">
+  <div><dt>Currently</dt><dd>UK editorial across 40+ tech companies at Reply</dd></div>
+  <div><dt>Previously</dt><dd>Trilateral Research<br>Freelance (Ought, Ali&nbsp;Abdaal)</dd></div>
+  <div><dt>Education</dt><dd>BSc Geography, Bristol (First&nbsp;Class)<br>MSc Social &amp; Geographic Data Science, UCL</dd></div>
+  <div><dt>Case studies</dt><dd>Signed off by <a href="https://www.reply.com/en/artificial-intelligence/scaling-ai-adoption-across-the-aa-with-chatgpt-enterprise">OpenAI</a>, <a href="https://www.reply.com/en/hybrid-work/oxfordshire-county-council-copilot-rollout">Microsoft</a> and <a href="https://www.reply.com/en/data-world/yougov-sport-modernises-sponsorship-analytics-on-aws">AWS</a></dd></div>
+</dl>
+
+<main id="index"></main>
+
+<footer id="contact">
+  <a class="cta" href="mailto:spereramerry@gmail.com">Let's talk <span>→</span></a>
+  <span class="small"><a href="mailto:spereramerry@gmail.com">spereramerry@gmail.com</a> / <a href="https://www.linkedin.com/in/sahanpm/">linkedin</a> / <a href="/llms.txt" target="_blank" rel="noopener">llms.txt</a></span>
+</footer>
+
+</div>
+</div></div>
+</div>
+
+<noscript>
+  <div class="wrap">
+    {article ? (
+      <article class="art">
+        <h1>{article.title}</h1>
+        <Fragment set:html={bodyOf(article.slug)} />
+        <p><a href="/">Front page</a></p>
+      </article>
+    ) : (
+      <ul>
+        {articles.map((a) => (
+          <li><a href={`/articles/${a.slug}`}>{a.title}</a></li>
+        ))}
+      </ul>
+    )}
+  </div>
+</noscript>
+<script is:inline set:html={script}></script>
+</body>
+</html>

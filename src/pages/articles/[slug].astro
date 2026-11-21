@@ -1,0 +1,12 @@
+---
+import Site from '../../components/Site.astro';
+import { articles } from '../../data/site.js';
+
+export function getStaticPaths() {
+  return articles.map((article) => ({ params: { slug: article.slug }, props: { article } }));
+}
+
+const { article } = Astro.props;
+---
+
+<Site article={article} />

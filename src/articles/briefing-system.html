@@ -1,0 +1,33 @@
+<p>On my last day at Trilateral Research, someone from the team asked if I could set up the briefing system again.</p>
+<p>It had gone dormant during a platform pricing transition. But they wanted it back. After months of receiving curated AI news at 8 AM every working day—three headlines, filtered from hundreds, tailored to the markets they actually sold into—going without it felt like a gap.</p>
+<p>That request, more than any metric I could cite, told me the system worked.</p>
+<h4>Where It Started</h4>
+<p><a class="il" href="/articles/commentary-model" data-open="w1">Trilateral is an AI ethics consultancy</a>. The sales team works across the UK, Ireland, EU, Saudi Arabia, and the UAE—selling AI governance, AI literacy training, and related services. Staying current on AI developments in each of these markets is part of the job.</p>
+<p>The problem was volume. Generic AI newsletters cover broad trends, not regional specifics. Not the French regulatory landscape or the German enterprise AI market or the Gulf states' AI investment priorities. So sales kept coming to marketing: "What's happening in the EU AI Act space?" "Can you pull something together on Saudi Arabia for a pitch?"</p>
+<p>Each request was reasonable. Collectively, they added up to about six hours a week of ad-hoc research. I built a system to handle the filtering automatically.</p>
+<h4>Why I Chose Copilot Studio Over Code</h4>
+<p>At an AI ethics consultancy, a script running on someone's laptop doesn't inspire confidence. The system needed to be visible, not clever.</p>
+<p>Copilot Studio integrated with the company's existing Microsoft stack. My digital experiences manager could review and approve it. The marketing team, who aren't engineers, could see what the system was doing.</p>
+<p>I have a data science background—my MSc dissertation involved building NLP pipelines. I could have written this in Python. But for a compliance-conscious organisation, visibility was the right architectural decision, not a compromise.</p>
+<h4>The Six-Stage Pipeline</h4>
+<p><strong>Source curation.</strong> 20 RSS feeds across target markets—UK, Ireland, French-language sources, German publications, Saudi and UAE outlets. The system processes French, German, and Arabic sources natively; the LLM handles translation during processing, no separate step required.</p>
+<p><strong>Ingestion.</strong> Daily pulls, collecting articles from the previous 24 hours.</p>
+<p><strong>Classification.</strong> Each article gets tagged using prompt-based zero-shot classification: AI governance, AI literacy, regulatory compliance, and so on. Tags map directly to Trilateral's product lines.</p>
+<p><strong>Ranking.</strong> The LLM evaluates each article on market alignment, product fit, and general newsworthiness. This is the aggressive filter—97% of articles are cut. 100 pieces become 3.</p>
+<p><strong>Enrichment.</strong> For the top articles, the system fetches full text via HTTPS and extracts key entities: statistics, funding amounts, dates, company names. This step was a lesson learned the hard way—RSS summaries alone don't contain enough signal.</p>
+<p><strong>Delivery.</strong> Content formatted as HTML, delivered at 8 AM on working days.</p>
+<h4>What Lands in the Inbox</h4>
+<p>Three "Blockbuster Headlines." Each one includes a short summary, a key statistic or data point, and—most importantly—a company-specific takeaway. Not just "here's what happened" but "here's how this connects to what we sell."</p>
+<p>Below that, a thematic trend synthesis: where the industry's collective attention seems to be focused. Something like "AI governance discussions are intensifying ahead of EU AI Act enforcement—potential opening for training services." Actionable, not just informative.</p>
+<h4>The Hard-Won Lessons</h4>
+<p><strong>You can't summarise a summary.</strong> My first approach tried to work with RSS feed summaries alone. The output was vague and generic. I had to add the step of fetching full articles. More complex, significantly better.</p>
+<p><strong>Separate writing from formatting.</strong> Generating content and HTML structure in one prompt produced worse results than doing them sequentially. Write first, format second.</p>
+<p><strong>Tone is harder than technology.</strong> The summaries needed to be technical enough to respect the reader's intelligence, but accessible enough for someone who doesn't track AI policy daily to read at 8 AM. That calibration took more iteration than any technical component.</p>
+<p><strong>Platform economics matter.</strong> Copilot Studio's pricing changed mid-project, which created friction with IT. In future, I'd assess pricing stability before committing.</p>
+<p><strong>Build measurement in from the start.</strong> I never added a feedback mechanism—no "Was this useful?" rating to track value over time. I'd change that next time.</p>
+<h4>Impact</h4>
+<p>Six hours a week, back in marketing's hands. The repetitive briefing requests stopped. The 97% filtering ratio is measured; other impact numbers are estimates. The system wasn't maintained after I left—organisational factors, not technical failure.</p>
+<h4>What This Project Is</h4>
+<p>This is systems thinking applied to information overload. My data science training shaped the approach—treating it as a pipeline problem with noisy input, transformation steps, and clean output—even though the implementation used prompts rather than statistical models.</p>
+<p>No models were trained. No algorithms were tuned. The ranking is entirely LLM-driven. But the framing applies whether you're writing Python or crafting prompts: <a class="il" href="/articles/cms-editorial-context" data-open="b2">how do you take messy, unstructured input and produce something actionable?</a></p>
+<p>The right solution was the one that ran reliably at 8 AM every morning, without anyone needing to intervene.</p>

@@ -1,0 +1,46 @@
+# Sahan Perera-Merry
+
+> Writer, builder and operator in B2B technology content. I turn engineering and research into writing experts respect, build the AI workflows that scale it, and get it signed off by clients and CEOs. Based in London.
+
+This file is a plain-text summary of sahanpm.com for language models and the people who use them.
+
+## Background
+
+- Currently: UK editorial across 40+ technology companies at Reply, since February 2026
+- Previously: Trilateral Research (AI ethics and governance consultancy), October 2023 to February 2026
+- Previously: freelance for Ought (the AI research lab behind Elicit) and Ali Abdaal Ltd, 2021 to 2023
+- Education: MSc Social & Geographic Data Science, UCL (Distinction); BSc Geography, University of Bristol (First Class)
+
+## Published case studies
+
+Each was signed off by the client and by the technology partner named.
+
+- [The AA: scaling AI adoption with ChatGPT Enterprise](https://www.reply.com/en/artificial-intelligence/scaling-ai-adoption-across-the-aa-with-chatgpt-enterprise): OpenAI
+- [Oxfordshire County Council: Copilot rollout](https://www.reply.com/en/hybrid-work/oxfordshire-county-council-copilot-rollout): Microsoft
+- [YouGov Sport: sponsorship analytics on AWS](https://www.reply.com/en/data-world/yougov-sport-modernises-sponsorship-analytics-on-aws): AWS
+
+## Writer
+
+Prose that engineers respect and buyers actually read.
+
+- [Commentary is better for executive thought leadership than extraction](https://www.sahanpm.com/articles/commentary-model): Twelve posts for a Responsible AI CEO, reaching 40,000+ impressions and regulators in the UK and EU.
+- [Turning engineering work into arguments that experts respect](https://www.sahanpm.com/articles/engineering-arguments): How an internal architecture deck became a commercial piece that engineering signed off in one pass.
+
+## Builder
+
+Systems for the parts of editorial work that shouldn’t be done by hand.
+
+- [From 100 articles to 3 that matter](https://www.sahanpm.com/articles/briefing-system): An automated Copilot Studio pipeline monitoring 20 global feeds for sales every morning.
+- [The editorial context you need is already in your CMS](https://www.sahanpm.com/articles/cms-editorial-context): A local SQLite and vector search engine across 23,000 records to automate content placement and briefs.
+
+## Operator
+
+The judgement to get complex work through technical, legal, and client sign-off.
+
+- [When drafting gets cheap, approval becomes the bottleneck](https://www.sahanpm.com/articles/approval-bottleneck): A tracker that asks who owes the next decision, and a rule that nothing is drafted before the client agrees in writing.
+- [How an engineering demo became a WIRED feature](https://www.sahanpm.com/articles/wired-feature): Cold email, an AI model that speaks Ancient Greek, and twelve days from pitch to publication.
+
+## Contact
+
+- Email: spereramerry@gmail.com
+- LinkedIn: https://www.linkedin.com/in/sahanpm/

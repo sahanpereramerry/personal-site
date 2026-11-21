@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/articles/ceo-writing", "destination": "/articles/commentary-model", "permanent": true }
+  ]
+}

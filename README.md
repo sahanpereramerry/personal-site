@@ -1,155 +1,46 @@
-# Sahan Perera-Merry - Personal Website
+# sahanpm.com
 
-A personal portfolio site built with Astro, Tailwind CSS, and React.
+Sahan Perera-Merry's personal site. Built with Astro and deployed on Vercel.
 
-## Tech Stack
+The front page lists six articles under three pillars (Writer, Builder, Operator). Opening an article slides it in as a pane beside the front page, and each article has its own address at `/articles/<slug>`.
 
-- **Astro** - Static site generator with component islands
-- **Tailwind CSS** - Utility-first CSS framework
-- **React** - For interactive components (word cloud)
+## Where things are
 
-## Getting Started
+| What | Where |
+|---|---|
+| Article text | `src/articles/<slug>.html` |
+| Article titles, order, pillar and the one-line description under each title | `src/data/site.js` |
+| Pillar names and their lines | `src/data/site.js` |
+| Hero, credentials strip and footer | `src/components/Site.astro` |
+| Styles | `src/site/styles.css` |
+| Pane behaviour and addresses | `src/site/client.js` |
+| Portrait, favicon, `llms.txt` | `public/` |
+| Redirects from old addresses | `vercel.json` |
 
-### Prerequisites
+## Editing an article
 
-- Node.js 18+ installed
-- npm or yarn
+Open its file in `src/articles` and change the HTML. Paragraphs are `<p>`, section headings are `<h4>`.
 
-### Installation
+A link from one article to another looks like this, where `w2` is the target's `id` in `src/data/site.js`:
+
+```html
+<a class="il" href="/articles/engineering-arguments" data-open="w2">the linked phrase</a>
+```
+
+The "Linked to from" list at the foot of each article and the hover highlights on the front page are worked out from these links.
+
+## Adding an article
+
+1. Add `src/articles/<slug>.html`.
+2. Add an entry to `articles` in `src/data/site.js` with a new `id`, the `slug`, the `pillar`, the `title` and the `line`.
+3. Add it to `public/llms.txt`.
+
+The one-line description is also what shows in link previews when the article is shared.
+
+## Running it locally
 
 ```bash
-# Navigate to the project folder
-cd personal-site
-
-# Install dependencies
 npm install
-
-# Start development server
-npm run dev
+npm run dev      # http://localhost:4321
+npm run build    # output in dist/
 ```
-
-The site will be available at `http://localhost:4321`
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-This creates a `dist/` folder with your static site.
-
-### Preview Production Build
-
-```bash
-npm run preview
-```
-
-## Deployment
-
-### Option 1: Vercel (Recommended)
-
-1. Push the `personal-site` folder to a GitHub repo
-2. Go to [vercel.com](https://vercel.com)
-3. Click "New Project" → Import your repo
-4. Vercel auto-detects Astro — just click Deploy
-5. Done. You get a URL like `yourname.vercel.app`
-
-To add a custom domain:
-- In Vercel dashboard → Settings → Domains → Add your domain
-- Update your domain's DNS to point to Vercel
-
-### Option 2: Netlify
-
-1. Push to GitHub
-2. Go to [netlify.com](https://netlify.com)
-3. Click "Add new site" → "Import an existing project"
-4. Connect your repo
-5. Build settings are auto-detected — click Deploy
-
-### Option 3: GitHub Pages
-
-1. Add to `astro.config.mjs`:
-   ```js
-   export default defineConfig({
-     site: 'https://yourusername.github.io',
-     base: '/your-repo-name',
-     // ... rest of config
-   });
-   ```
-
-2. Install GitHub Pages adapter:
-   ```bash
-   npm install @astrojs/github-pages
-   ```
-
-3. Push to GitHub and enable Pages in repo settings
-
-## Project Structure
-
-```
-personal-site/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   ├── Hero.astro
-│   │   ├── SelectedWork.astro
-│   │   ├── About.astro
-│   │   ├── Contact.astro
-│   │   ├── Navigation.astro
-│   │   └── WordCloud.tsx       # React component
-│   ├── layouts/
-│   │   └── Layout.astro
-│   ├── pages/
-│   │   ├── index.astro         # Homepage
-│   │   └── articles/
-│   │       ├── briefing-system.astro
-│   │       └── ceo-writing.astro
-│   └── styles/
-│       └── global.css
-├── astro.config.mjs
-├── tailwind.config.mjs
-└── package.json
-```
-
-## Customization
-
-### Colors
-
-Edit `tailwind.config.mjs` to change the color palette:
-
-```js
-colors: {
-  dark: {
-    bg: '#0a0a0a',      // Background
-    surface: '#141414', // Card backgrounds
-    border: '#262626',  // Borders
-  },
-  accent: {
-    DEFAULT: '#a78bfa', // Purple accent
-    dim: '#7c3aed',
-  }
-}
-```
-
-### Fonts
-
-The site uses:
-- **Playfair Display** for headings
-- **Inter** for body text
-
-Change in `global.css` and `tailwind.config.mjs`.
-
-### Word Cloud
-
-Edit `src/components/WordCloud.tsx` to change:
-- Words and their weights (size)
-- Links each word navigates to
-- Hover effects
-
-## TODO
-
-- [ ] Add final content to "From 100 Articles to 3 That Matter" article
-- [ ] Add headshot/photo (optional)
-- [ ] Connect custom domain
-- [ ] Set up analytics (optional)
